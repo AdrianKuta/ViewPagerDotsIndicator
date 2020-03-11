@@ -15,12 +15,9 @@ class ViewPager2Activity : AppCompatActivity() {
         setContentView(R.layout.activity_viewpager2)
         setSupportActionBar(toolbar)
 
-        val adapter =
-            ScreenSlidePagerAdapter(
-                this
-            )
+        val adapter = ScreenSlidePagerAdapter(this)
         viewPager2.adapter = adapter
-        TabLayoutMediator(tabLayout, viewPager2) {tab, position ->
+        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
 
         }.attach()
     }
