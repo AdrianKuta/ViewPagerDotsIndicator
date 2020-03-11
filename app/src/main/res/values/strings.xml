@@ -1,0 +1,7 @@
+<resources>
+	<string name="app_name">Dots indicator demo</string>
+	<string name="tab_text_1">Tab 1</string>
+	<string name="tab_text_2">Tab 2</string>
+    <string name="app_viewpager">ViewPager Demo</string>
+	<string name="app_viewpager2">ViewPager2 Demo</string>
+</resources>
