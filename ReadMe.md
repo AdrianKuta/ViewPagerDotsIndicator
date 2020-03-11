@@ -16,8 +16,7 @@ selected and default dots.
 
 Firstly, we have to add `TabLayout` to our screen layout, and connect it
 with `ViewPager`. We can do this in two ways:
-
-
+---
 #### Nested `TabLayout` in `ViewPager`
 ```xml
 <androidx.viewpager.widget.ViewPager
@@ -33,7 +32,7 @@ with `ViewPager`. We can do this in two ways:
 
 > In this case `TabLayout` will be automatically connected with
 > `ViewPager`, but `TabLayout` will be next to `ViewPager`, not over it.
-
+---
 #### Separate `TabLayout`
 
 ```xml
@@ -67,7 +66,7 @@ TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
     //Some implementation...    
     }.attach()
 ```
-
+---
 Once we created our layout, we have to prepare our dots. So we create
 three files: `selected_dot.xml`, `default_dot.xml` and
 `tab_selector.xml`.
