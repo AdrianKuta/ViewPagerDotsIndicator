@@ -14,9 +14,10 @@ selected and default dots.
 > Implementation for `ViewPager2` is almost the same:  
 > Replace `androidx.viewpager.widget.ViewPager` with `androidx.viewpager2.widget.ViewPager2`.
 
+---
 Firstly, we have to add `TabLayout` to our screen layout, and connect it
 with `ViewPager`. We can do this in two ways:
----
+
 #### Nested `TabLayout` in `ViewPager`
 ```xml
 <androidx.viewpager.widget.ViewPager
