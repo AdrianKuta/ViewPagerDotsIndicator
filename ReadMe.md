@@ -6,15 +6,19 @@ either for `ViewPager` or `ViewPager2`.
 
 ## How to implement View Pager dots indicator?
 
+Here is description how to implement dots indicator - full example you can find in repository above.
+
 All we need are: [ViewPager][1], [TabLayout][2] and 2 drawables for
 selected and default dots.
+
+> Implementation for `ViewPager2` is almost the same:  
+> Replace `androidx.viewpager.widget.ViewPager` with `androidx.viewpager2.widget.ViewPager2`.
 
 Firstly, we have to add `TabLayout` to our screen layout, and connect it
 with `ViewPager`. We can do this in two ways:
 
 
-### Nested `TabLayout` in `ViewPager`
-
+#### Nested `TabLayout` in `ViewPager`
 ```xml
 <androidx.viewpager.widget.ViewPager
     android:id="@+id/photos_viewpager"
@@ -30,7 +34,7 @@ with `ViewPager`. We can do this in two ways:
 > In this case `TabLayout` will be automatically connected with
 > `ViewPager`, but `TabLayout` will be next to `ViewPager`, not over it.
 
-### Separate `TabLayout`
+#### Separate `TabLayout`
 
 ```xml
 <androidx.viewpager.widget.ViewPager
@@ -47,20 +51,28 @@ with `ViewPager`. We can do this in two ways:
 > In this case, we can put `TabLayout` anywhere, but we have to connect
 > `TabLayout` with `ViewPager` programmatically
 
-```java
-ViewPager pager = (ViewPager) view.findViewById(R.id.photos_viewpager);
-PagerAdapter adapter = new PhotosAdapter(getChildFragmentManager(), photosUrl);
-pager.setAdapter(adapter);
-
-TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-tabLayout.setupWithViewPager(pager, true);
+**for `ViewPager`**
+```kotlin
+val viewPager = findViewById<ViewPager>(R.id.viewPager)
+val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+viewPager.adapter = sectionsPagerAdapter
+tabLayout.setupWithViewPager(viewPager)
+```
+**for `ViewPager2`**
+```kotlin
+val viewPager2 = findViewById<ViewPager2>(R.id.viewPager2)
+val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
+viewPager.adapter = sectionsPagerAdapter
+TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
+    //Some implementation...    
+    }.attach()
 ```
 
 Once we created our layout, we have to prepare our dots. So we create
 three files: `selected_dot.xml`, `default_dot.xml` and
 `tab_selector.xml`.
 
-### selected_dot.xml
+#### selected_dot.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -77,7 +89,7 @@ three files: `selected_dot.xml`, `default_dot.xml` and
 </layer-list>
 ```
 
-### default_dot.xml
+#### default_dot.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -94,7 +106,7 @@ three files: `selected_dot.xml`, `default_dot.xml` and
 </layer-list>
 ```
 
-### tab_selector.xml
+#### tab_selector.xml
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -107,8 +119,6 @@ three files: `selected_dot.xml`, `default_dot.xml` and
 </selector>
 ```
 
----
-
 Now we need to add only 3 lines of code to `TabLayout` in our XML
 layout.
 
@@ -118,7 +128,7 @@ app:tabGravity="center"
 app:tabIndicatorHeight="0dp"
 ```
 
-
+---
 
 *[ViewPager with dots indicator][3] at medium.com*
 

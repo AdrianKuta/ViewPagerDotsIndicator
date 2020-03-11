@@ -2,9 +2,10 @@ package com.adriankuta.viewpagerdots.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
 import com.adriankuta.viewpagerdots.R
 import com.adriankuta.viewpagerdots.adapters.SectionsPagerAdapter
-import kotlinx.android.synthetic.main.activity_viewpager.*
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.toolbar.*
 
 class ViewPagerActivity : AppCompatActivity() {
@@ -20,6 +21,8 @@ class ViewPagerActivity : AppCompatActivity() {
                 supportFragmentManager
             )
 
+        val viewPager = findViewById<ViewPager>(R.id.viewPager)
+        val tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager.adapter = sectionsPagerAdapter
         tabLayout.setupWithViewPager(viewPager)
     }
